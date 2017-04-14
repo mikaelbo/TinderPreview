@@ -14,10 +14,12 @@
     if ([self.match respondsToSelector:@selector(myGroup)]) {
         if (self.match.myGroup) { return; }
     }
-    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(MBTNDR_longPress:)];
-    recognizer.minimumPressDuration = 0.25;
-    [self.avatarImageView addGestureRecognizer:recognizer];
-    self.avatarImageView.userInteractionEnabled = YES;
+    if ([self respondsToSelector:@selector(avatarImageView)]) {
+        UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(MBTNDR_longPress:)];
+        recognizer.minimumPressDuration = 0.25;
+        [self.avatarImageView addGestureRecognizer:recognizer];
+        self.avatarImageView.userInteractionEnabled = YES;
+    }
 }
 
 - (void)showCurrentMatchProfile {
