@@ -7,7 +7,7 @@
 %hook TNDRMatchCell
 
 - (void)setup {
-    %orig();
+    %orig;
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(MBTNDR_longPress:)];
     recognizer.minimumPressDuration = 0.25;
     recognizer.delegate = self;
@@ -16,9 +16,11 @@
 
 - (void)layoutSubviews {
     %orig;
-        if ([[MBTNDRProfileDisplayer currentDisplayer] canShowMatchProfile] && [self respondsToSelector:@selector(avatarImageView)]) {
-        self.avatarImageView.userInteractionEnabled = YES;
-        [self.avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(MBTNDR_avatarTap)]];
+    if ([[MBTNDRProfileDisplayer currentDisplayer] canShowMatchProfile] && [self respondsToSelector:@selector(avatarImageView)]) {
+        if (!self.avatarImageView.userInteractionEnabled) {
+            self.avatarImageView.userInteractionEnabled = YES;
+            [self.avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(MBTNDR_avatarTap)]];
+        }
     }
 }
 
@@ -78,9 +80,6 @@
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
-        return YES;
-    }
     TNDRSlidingPagedViewController *rootVC = (TNDRSlidingPagedViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
     if (![rootVC isKindOfClass:NSClassFromString(@"TNDRSlidingPagedViewController")]) { return NO; }
     TNDRMatchesViewController *matchesVC = rootVC.matchesViewController;
