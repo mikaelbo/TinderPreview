@@ -12,6 +12,7 @@
     recognizer.minimumPressDuration = 0.25;
     recognizer.delegate = self;
     [self.contentView addGestureRecognizer:recognizer];
+    [self MBTNDR_setLongPressRecognizer:recognizer];
 }
 
 - (void)layoutSubviews {
@@ -80,6 +81,9 @@
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (![gestureRecognizer isEqual:[self MBTNDR_longPressRecognizer]]) {
+        return %orig;
+    }
     TNDRSlidingPagedViewController *rootVC = (TNDRSlidingPagedViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
     if (![rootVC isKindOfClass:NSClassFromString(@"TNDRSlidingPagedViewController")]) { return NO; }
     TNDRMatchesViewController *matchesVC = rootVC.matchesViewController;
