@@ -52,6 +52,13 @@
 
 @end
 
+@interface TNDRMatchCell(GestureRecognizer)
+
+- (void)MBTNDR_setLongPressRecognizer:(UILongPressGestureRecognizer *)recognizer;
+- (UILongPressGestureRecognizer *)MBTNDR_longPressRecognizer;
+
+@end
+
 
 @interface TNDRNewMatchCollectionViewCell : UICollectionViewCell
 
