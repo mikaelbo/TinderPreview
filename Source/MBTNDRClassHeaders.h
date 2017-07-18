@@ -66,6 +66,8 @@
 @property (strong, nonatomic) UIImageView *avatarImageView;
 @property (strong, nonatomic) UILabel *nameLabel;
 
+- (void)MB_addLongPressRecognizer;
+
 @end
 
 

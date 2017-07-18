@@ -6,8 +6,16 @@
 
 %hook TNDRNewMatchCollectionViewCell
 
-- (void)setup {
+- (void)setMatch:(id)match {
     %orig;
+    [self MB_addLongPressRecognizer];
+}
+
+%new 
+- (void)MB_addLongPressRecognizer {
+    if (![self respondsToSelector:@selector(match)]) {
+        return;
+    }
     if ([self.match respondsToSelector:@selector(theirGroupOwner)]) {
         if (self.match.theirGroupOwner) { return; }
     }
@@ -15,7 +23,7 @@
         if (self.match.myGroup) { return; }
     }
     if ([self respondsToSelector:@selector(avatarImageView)]) {
-        UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(MBTNDR_longPress:)];
+        UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(STNDR_longPress:)];
         recognizer.minimumPressDuration = 0.25;
         [self.avatarImageView addGestureRecognizer:recognizer];
         self.avatarImageView.userInteractionEnabled = YES;
