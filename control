@@ -1,9 +1,9 @@
-Package: com.mikaelbo.tinderpreview
+Package: com.mbo42.tinderpreview
 Name: TinderPreview
 Depends: mobilesubstrate, firmware(>= 8)
 Version: 1.0
 Architecture: iphoneos-arm
 Description: A small tweak that adds a convenient way of previewing and handling matches in Tinder.
-Maintainer: Mikaelbo
-Author: Mikaelbo
+Maintainer: mbo42
+Author: mbo42
 Section: Tweaks
