@@ -2,7 +2,7 @@
 
 A simple iOS tweak that adds some convenience to the matches list in Tinder. Made for research purposes, and for fun, with the help of Cycript. 
 
-Tested and working with Tinder **7.2.2+**. 
+Tested and working with Tinder version **7.2.2**. Currently partly broken due to parts of Tinder being rewritten in Swift. 
 
 *(Group matches are currently not supported)*
 
